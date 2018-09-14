@@ -1,12 +1,35 @@
 package com.bruer.signin;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class TimeManager {
 	public static Calendar getCurrentTime() {
 		return Calendar.getInstance();
 	}
+	
+	public static Calendar stringToCalendar(String calendar) {
+		Calendar newCalendar = Calendar.getInstance();
+		String[] in = calendar.split(":");
+		newCalendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(in[0]));
+		newCalendar.set(Calendar.MINUTE, Integer.parseInt(in[1]));
+		newCalendar.set(Calendar.SECOND, Integer.parseInt(in[2]));
+		newCalendar.set(Calendar.MONTH, Integer.parseInt(in[3]));
+		newCalendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(in[4]));
+		newCalendar.set(Calendar.YEAR, Integer.parseInt(in[5]));
+		return newCalendar;
+	}
+	
+	public static String calendarToString(Calendar calendar) {
+		String output = "";
+		output += calendar.get(Calendar.HOUR_OF_DAY) + ":";
+		output += calendar.get(Calendar.MINUTE)+ ":";
+		output += calendar.get(Calendar.SECOND)+ ":";
+		output += calendar.get(Calendar.MONTH)+ ":";
+		output += calendar.get(Calendar.DAY_OF_MONTH)+ ":";
+		output += calendar.get(Calendar.YEAR);
+		return output;
+	}
+	
 	
 	public static double[] getAbsoluteDifference(Calendar one, Calendar two) {
 		double[] in = getDifference(one, two);
